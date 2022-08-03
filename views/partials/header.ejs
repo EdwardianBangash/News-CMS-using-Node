@@ -10,10 +10,16 @@
 <body>
     <div class="navbar">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Entertainment</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Showbiz</a></li>
+            <li><a href="/">Home</a></li>
+            <% if(typeof categories != 'undefined'){
+            categories.forEach((category) => {
+            %>
+            <li>
+                <a href="/post/<%= category.category_name%>"><%= category.category_name%></a>
+            </li>
+            <%
+                })}
+            %>
             <li class="login-btns">
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
