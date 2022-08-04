@@ -5,23 +5,33 @@
     <table>
         <tr>
             <td>#</td>
+            <td>Thumbnail</td>
             <td>Title</td>
             <td>Description</td>
             <td>Action</td>
         </tr>
         <tbody>
+            <% if(typeof blogs != 'undefined')
+                blogs.forEach((blog) => {
+            %>
             <tr>
-                <td>1</td>
-                <td>Entertainment</td>
-                <td>Lorem, ipsum dolor...</td>
+                <td><%= blog._id %></td>
+                <td>
+                    <img src="/images/<%=blog.thumbnail %>" height="150" width="150">
+                </td>
+                <td><%= blog.title %></td>
+                <td><%= blog.description %></td>
                 <td>
                     <div class="btn-group">
-                        <a href="">Show</a>
-                        <a href="">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="/showBlog?id=<%= blog._id %>">Show</a>
+                        <a href="/editBlog?id=<%= blog._id %>">Edit</a>
+                        <a href="/deleteBlog?id=<%= blog._id %>">Delete</a>
                     </div>
                 </td>
             </tr>
+            <%
+                })
+            %>
         </tbody>
     </table>
 </div>

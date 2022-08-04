@@ -10,6 +10,14 @@ exports.allCategories = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+exports.apiAllCategories = (req, res) => {
+    Category.find({})
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => console.error(err));
+};
+
 exports.addCategories = (req, res) => {
   let errors = [];
 

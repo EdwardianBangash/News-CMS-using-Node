@@ -1,24 +1,21 @@
-const Category = require("../models/Category");
-const Blog = require("../models/Blog");
+const axios = require("axios");
+const { response } = require("express");
 
-exports.index = (req, res) => {
+exports.index = async (req, res) => {
+  try {
     let categories = [];
     let blogs = [];
 
-    Category.find({})
-    .then((result) => { 
-        categories.push(result)
-    })
-    .catch((err) => console.error(err));
-
-    Blog.find({})
-    .then((result) => { 
-        blogs.push(result)
-    })
-    .catch((err) => console.error(err));
+    await axios
+      .get("http://127.0.0.1:8000/apiAllCategories")
+      .then((response) => {
+        for (let index = 0; index < response.data.length; index++) {
+            categories.push(response.data[index]);
+        }
+      });
 
     res.render("welcome", {
-        categories: categories,
-        blogs: blogs,
+      categories: categories,
     });
-}
+  } catch (error) {}
+};
