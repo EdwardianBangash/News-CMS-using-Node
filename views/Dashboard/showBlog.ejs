@@ -1,0 +1,24 @@
+<%- include('./includes/header') %>
+
+<div class="main">
+            <% if(typeof blogs != 'undefined'){
+            %>
+                <div class="header">
+                    <img src="/images/<%=blogs.thumbnail %>" height="150" width="150">
+                    <div class="title"><%= blogs.title %></div>
+                </div>
+                <div class="description"><%= blogs.description %></div>
+                <div class="footer">
+                    <div class="btn-group">
+                        <a href="/editBlog/<%= blogs._id %>">Edit</a>
+                        <a href="/deleteBlog/<%= blogs._id %>">Delete</a>
+                    </div>
+                </div>
+            </tr>
+            <%
+                }
+            %>
+    </table>
+</div>
+
+<%- include('./includes/footer') %>

@@ -43,9 +43,14 @@ router.get('/deleteCategory', CategoryController.deleteCategory);
 //blogs routes..
 router.get('/allBlogs', BlogController.index);
 router.get('/addBlog', BlogController.create);
+router.get('/showBlog/:id', BlogController.showBlog);
+router.get('/editBlog/:id', BlogController.editBlog);
+router.get('/deleteBlog/:id', BlogController.delete);
 
 //api routes
 router.post('/addBlog',upload.single('thumbnail'), BlogController.store);
+router.post('/updateBlog',upload.single('thumbnail'), BlogController.update);
+router.post('/apiAllBlogs',BlogController.apiAllBlogs);
 
 
 

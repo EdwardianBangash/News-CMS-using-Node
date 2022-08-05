@@ -1,24 +1,37 @@
 <%- include('./includes/header') %>
 
 <div class="main">
-    <h2>Edit Blog</h2>
-    <form action="">
+    <h2>Add Blog</h2>
+    <%- include('./includes/message') %>
+    <form action="/updateBlog" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="name">Title:</label>
-            <input type="text" name="title" id="">
+            <label for="title">Title:</label>
+            <input type="hidden" value="<%= id %>" name="id">
+            <input type="text" name="title" id="title" value="<%= typeof blog.title != 'undefined' ? blog.title : ''%>"> 
         </div>
 
         <div class="form-group">
             <label for="name">Description:</label>
-            <textarea name="description" id=""></textarea>
+            <textarea name="description" id=""><%= typeof blog.description != 'undefined' ? blog.description : ''%></textarea>
         </div>
 
-        <select name="category" id="">
-            <option value="1">Entertainment</option>
-            <option value="2">Sports</option>
-        </select>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="">
+                <option value="1">Entertainment</option>
+                <option value="2">Sports</option>
+            </select>
+        </div>
 
-        <input type="submit" value="Add Category">
+        <div class="form-group">
+            <label for="thumbnail">Thumbnail</label>
+            <input type="file" name="thumbnail" id="">
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="old_image" value="<%= blog.thumbnail%>">
+            <img src="/images/<%= blog.thumbnail%>" alt="<%= blog.thumbnail%>" height="200" width="200">
+        </div>
+        <input type="submit" value="Update">
     </form>
 </div>
 

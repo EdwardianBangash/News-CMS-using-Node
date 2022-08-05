@@ -24,6 +24,10 @@ mongoose.connect(process.env.MongoURI).then(() => {
 });
 
 
+app.use(function(req,res){
+    res.status(404).render('404');
+  });
+
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => {console.log(`listening on port ${PORT}`)});
