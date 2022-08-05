@@ -4,9 +4,34 @@ const path = require('path');
 const router = require('./routes/router');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
 
 dotenv.config();
+
 const app = express();
+
+require('./config/passport')(passport);
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }));
