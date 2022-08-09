@@ -57,6 +57,6 @@ router.get("/deleteBlog/:id", BlogController.delete);
 //api routes
 router.post("/addBlog", upload.single("thumbnail"), BlogController.store);
 router.post("/updateBlog", upload.single("thumbnail"), BlogController.update);
-router.post("/apiAllBlogs", BlogController.apiAllBlogs);
+router.get("/apiAllBlogs", BlogController.apiAllBlogs);
 
 module.exports = router;

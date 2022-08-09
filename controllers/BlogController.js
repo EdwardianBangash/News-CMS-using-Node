@@ -1,13 +1,14 @@
 const Blog = require("../models/Blog");
+const Category = require("../models/Category");
 
 exports.index = (req, res) => {
-  Blog.find({}).then((result) => {
+  Blog.find({}).populate('category').then((result) => {
     res.render("Dashboard/allBlogs", { blogs: result });
   });
 };
 
 exports.apiAllBlogs = (req, res) => {
-  Blog.find({}).then((result) => {
+  Blog.find({}).populate('category', 'category_name').then((result) => {
     res.send(result);
   });
 }
@@ -23,7 +24,9 @@ exports.showBlog = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  res.render("Dashboard/addBlog");
+  Category.find({}).then(result => {
+    res.render("Dashboard/addBlog", {categories:result});
+  }).catch(err => console.error(err));
 };
 
 exports.store = (req, res) => {

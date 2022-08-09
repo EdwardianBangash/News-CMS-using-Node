@@ -1,28 +1,21 @@
 <%- include('partials/header') %>
 <div class="main">
     <div class="main-content">
+        <%
+            if(typeof blogs != 'undefined'){
+                blogs.forEach(blog => {
+        %>
         <div class="post">
-            <div class="post-title">Hello world</div>
+            <div class="post-title"><%= blog.title%></div>
             <div class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit molestiae reiciendis quas error tenetur fuga hic facere pariatur accusamus ad? Eos fugiat ullam asperiores rerum nam excepturi, iure quibusdam quasi!
+                <%= blog.description%>
             </div>
+            <div class="post-category"><%= blog.category[0].category_name%></div>
             <div class="read-more">Read More</div>
         </div>
-        <div class="post">
-            <div class="post-title">Hello world</div>
-            <div class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit molestiae reiciendis quas error tenetur fuga hic facere pariatur accusamus ad? Eos fugiat ullam asperiores rerum nam excepturi, iure quibusdam quasi!
-            </div>
-            <div class="read-more">Read More</div>
-        </div>
-
-        <div class="post">
-            <div class="post-title">Hello world</div>
-            <div class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit molestiae reiciendis quas error tenetur fuga hic facere pariatur accusamus ad? Eos fugiat ullam asperiores rerum nam excepturi, iure quibusdam quasi!
-            </div>
-            <div class="read-more">Read More</div>
-        </div>
+        <%
+    })}
+        %>
     </div>
     <div class="sidebar-content">
         <div class="search">

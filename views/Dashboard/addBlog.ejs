@@ -17,8 +17,10 @@
         <div class="form-group">
             <label for="category">Category</label>
             <select name="category" id="">
-                <option value="1">Entertainment</option>
-                <option value="2">Sports</option>
+                <% if(typeof categories != 'undefined') {
+                categories.forEach(category => {%>
+                <option value="<%= category._id%>"><%= category.category_name%></option>
+                <%})}%>
             </select>
         </div>
 
